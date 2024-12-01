@@ -1,3 +1,4 @@
+import { Request, Response } from "express";
 import { UserServices } from "./user.service";
 
 
@@ -34,4 +35,8 @@ const createStudent = async (req: Request, res: Response) => {
             error: String(err), // Convert unknown to string for logging
         });
     }
+};
+
+export const UserControllers = {
+    createStudent,
 };
