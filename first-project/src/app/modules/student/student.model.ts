@@ -2,7 +2,7 @@ import { Schema, model } from 'mongoose';
 import { TGuardian, TLocalGuardian, TStudent, StudentMethods, StudentModel, TUserName } from './student/student.interface';
 import validator from 'validator';
 import bcrypt from 'bcrypt'
-import config from '../config';
+import config from '../../config';
 
 const userNameSchema = new Schema<TUserName>({
     firstName: {
