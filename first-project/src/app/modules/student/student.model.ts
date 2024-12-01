@@ -158,14 +158,6 @@ const studentSchema = new Schema<TStudent, StudentModel>({
     profileImg: {
         type: String,
     },
-    isActive: {
-        type: String,
-        enum: {
-            values: ['active', 'blocked'],
-            message: '{VALUE} is not a valid status. Allowed values: active, blocked.',
-        },
-        default: 'active',
-    },
     isDeleted: {
         type: Boolean,
         default: false,
