@@ -1,30 +1,38 @@
-import express, { Application, Request, Response } from 'express';
+import express, { Application, Request, Response, NextFunction } from 'express';
 import cors from 'cors';
 import { StudentRoutes } from './app/modules/student/student.route';
 import { UserRoutes } from './app/modules/user/user.route';
+import globalErrorHandler from './app/middlewares/globalErrorHandler';
 
 const app: Application = express();
 
-// parser
+// Parser
 app.use(express.json());
 app.use(cors());
 
-// /api/v1/students/create-student
-
-// application routes
+// Application routes
 app.use('/api/v1/students', StudentRoutes);
 app.use('/api/v1/users', UserRoutes);
 
+// Controller for root route
 const getAController = (req: Request, res: Response) => {
-  //   res.send('Hello World!')
-  // const a = 10;
-  // res.send(a);
   res.status(200).send("Success"); // HTTP 200 OK with a message
-
 };
 
 app.get('/', getAController);
 
-// console.log(process.cwd()); // E:\web\Programming Hero\Level 2\Mission 01-Be A Typescript Technocrat\Module 8-Mastering The Core concept of Mongoose\first-project
+// // Global error handler middleware
+// app.use((err: any, req: Request, res: Response, next: NextFunction) => {
+//   const statusCode = err.status || 500; // Use err.status if provided
+//   const message = err.message || "Something went wrong!";
+  
+//   res.status(statusCode).json({
+//     success: false,
+//     message,
+//     error: err.stack || err,
+//   });
+// });
+
+app.use(globalErrorHandler);
 
 export default app;
