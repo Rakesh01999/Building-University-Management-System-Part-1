@@ -4,15 +4,18 @@ import { error } from 'console';
 // import Joi from 'joi'
 import studentValidationSchema from './student.validation';
 import { z } from "zod";
+import sendResponse from '../../utils/sendResponse';
+import httpStatus from "http-status";
 
 
 const getAllStudents = async (req: Request, res: Response, next: NextFunction) => {
     try {
         const result = await StudentServices.getAllStudentsFromDB()
 
-        res.status(200).json({
+        sendResponse(res, {
+            statusCode: httpStatus.OK,
             success: true,
-            message: 'Students are retrieved successfully',
+            message: 'Student are retrieved successfully',
             data: result,
         });
 
