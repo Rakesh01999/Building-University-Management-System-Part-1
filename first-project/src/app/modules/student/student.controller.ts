@@ -31,7 +31,8 @@ const getSingleStudents = async (req: Request, res: Response, next: NextFunction
 
         const result = await StudentServices.getSingleStudentsFromDB(studentId)
 
-        res.status(200).json({
+        sendResponse(res, {
+            statusCode: httpStatus.OK,
             success: true,
             message: 'Student is retrieved successfully',
             data: result,
@@ -48,7 +49,8 @@ const deleteStudent = async (req: Request, res: Response, next: NextFunction) =>
 
         const result = await StudentServices.deleteStudentFromDB(studentId)
 
-        res.status(200).json({
+        sendResponse(res, {
+            statusCode: httpStatus.OK,
             success: true,
             message: 'Student is deleted successfully',
             data: result,
